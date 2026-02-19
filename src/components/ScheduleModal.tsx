@@ -1,0 +1,131 @@
+import React from 'react';
+import { X, ChevronRight } from 'lucide-react';
+
+interface ScheduleModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <div
+                className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+                onClick={onClose}
+            ></div>
+
+            <div className="relative w-full max-w-[900px] bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
+
+                {/* Header */}
+                <div className="flex justify-between items-center px-6 py-4 border-b border-zinc-200 bg-white">
+                    <h2 className="text-xl font-bold text-black">Register Your Interest</h2>
+                    <button onClick={onClose} className="text-zinc-500 hover:text-zinc-800 transition-colors">
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                <div className="flex flex-col md:flex-row h-full">
+                    {/* Left Pane - Creative */}
+                    <div className="w-full md:w-[45%] bg-[#1c3a8a] text-white p-8 relative flex flex-col items-center justify-center text-center overflow-hidden">
+
+                        {/* 2026 */}
+                        <div className="text-[#4ade80] font-black text-6xl leading-none mb-1 shadow-black drop-shadow-lg" style={{ WebkitTextStroke: '1px #166534' }}>
+                            2026
+                        </div>
+
+                        {/* BIG BILLION PROPERTY SALE */}
+                        <div className="bg-[#fbbf24] text-[#1c3a8a] font-black text-2xl px-2 py-1 leading-[0.9] w-full max-w-[280px] border-2 border-white mb-6 transform -skew-x-6">
+                            <span className="block text-3xl">BIG BILLION</span>
+                            <span className="block text-xl">PROPERTY SALE</span>
+                        </div>
+
+                        {/* Arrows Decoration */}
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-50">
+                            <ChevronRight className="w-8 h-8 text-[#fbbf24]" />
+                            <ChevronRight className="w-8 h-8 text-[#fbbf24] -ml-4" />
+                        </div>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-50 rotate-180">
+                            <ChevronRight className="w-8 h-8 text-[#fbbf24]" />
+                            <ChevronRight className="w-8 h-8 text-[#fbbf24] -ml-4" />
+                        </div>
+
+                        {/* BUY SELL LEASE */}
+                        <div className="space-y-0 mb-2">
+                            <div className="text-[#fbbf24] font-black text-3xl drop-shadow-md">BUY</div>
+                            <div className="text-[#fbbf24] font-black text-3xl drop-shadow-md">SELL</div>
+                            <div className="text-[#fbbf24] font-black text-3xl drop-shadow-md">LEASE</div>
+                        </div>
+
+                        <div className="text-white text-[10px] tracking-[0.2em] font-medium mb-8">
+                            YOUR PROPERTY <br /> ALL UNDER ONE ROOF
+                        </div>
+
+                        {/* Bottom Boxes */}
+                        <div className="flex gap-2 w-full mt-auto">
+                            <div className="bg-[#fbbf24] text-[#1c3a8a] p-2 flex-1 flex items-center justify-center text-[10px] font-bold leading-tight border border-white">
+                                SELL YOUR PROPERTY AT A PREMIUM*
+                            </div>
+                            <div className="bg-white text-[#1c3a8a] p-2 flex-1 flex items-center justify-center text-[10px] font-bold leading-tight border border-[#fbbf24]">
+                                BUY AT A DISCOUNTED PRICE
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Pane - Form */}
+                    <div className="w-full md:w-[55%] bg-white p-8">
+                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+
+                            {/* Name */}
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Enter your name"
+                                    className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
+                                />
+                            </div>
+
+                            {/* Phone */}
+                            <div>
+                                <input
+                                    type="tel"
+                                    placeholder="Phone number"
+                                    className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
+                                />
+                            </div>
+
+                            {/* Email */}
+                            <div>
+                                <input
+                                    type="email"
+                                    placeholder="Email (Optional)"
+                                    className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
+                                />
+                            </div>
+
+                            {/* Message */}
+                            <div>
+                                <textarea
+                                    rows={4}
+                                    placeholder="Type your message..."
+                                    className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm resize-none"
+                                ></textarea>
+                            </div>
+
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                className="w-full py-3 bg-[#005bb7] hover:bg-[#004a99] text-white font-bold text-lg rounded-sm transition-colors shadow-sm"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ScheduleModal;
