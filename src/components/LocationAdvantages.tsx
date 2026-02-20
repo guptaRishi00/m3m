@@ -1,5 +1,6 @@
 import React from 'react';
-import { CheckSquare } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Building2, Train, Plane, TreePine, CheckSquare } from 'lucide-react';
 
 const LocationAdvantages = () => {
 
@@ -26,9 +27,11 @@ const LocationAdvantages = () => {
                     <div className="w-full md:w-1/2 relative rounded-xl overflow-hidden shadow-lg border border-zinc-200">
                         {/* Placeholder for Map */}
                         <div className="absolute inset-0 bg-zinc-100 animate-pulse"></div>
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2662&auto=format&fit=crop"
                             alt="Location Map"
+                            width={1600}
+                            height={900}
                             className="relative w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
                         />
                         {/* Map Pin Overlay Effect */}

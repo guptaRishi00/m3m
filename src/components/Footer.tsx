@@ -7,7 +7,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onEnquire }) => {
-    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/918448774030");
+    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/919090907712");
 
     useEffect(() => {
         const params = getUTMParameters();
@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ onEnquire }) => {
 
         if (utmString) {
             const message = encodeURIComponent(`I'm interested in M3M Forestia. (Source: ${utmString})`);
-            setWhatsappUrl(`https://wa.me/918448774030?text=${message}`);
+            setWhatsappUrl(`https://wa.me/919090907712?text=${message}`);
         }
     }, []);
 
@@ -47,13 +47,10 @@ const Footer: React.FC<FooterProps> = ({ onEnquire }) => {
                         <p className="text-zinc-800 font-bold mb-4 text-sm">
                             Gurugram: Schedule a Site Visit or get the Brochure, Floor Plans & Pricing
                         </p>
-                        <a href="tel:+919220038472" className="text-zinc-900 font-black text-lg mb-2 hover:text-[#005bb7] transition-colors">
-                            Call us at +91 92200 38472
+                        <a href="tel:+919090907712" className="text-zinc-900 font-black text-lg mb-2 hover:text-[#005bb7] transition-colors">
+                            Call us at +91 90909 07712
                         </a>
-                        <a href={whatsappUrl} className="text-zinc-900 font-bold text-sm flex items-center gap-2 hover:text-[#25D366] transition-colors">
-                            <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                            WhatsApp us at +91 8448774030 instantly!
-                        </a>
+
                     </div>
 
                     {/* Right Column: Quick Links */}

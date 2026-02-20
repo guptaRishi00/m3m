@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { MinusCircle } from 'lucide-react';
 
 interface ResidentialProjectsProps {
@@ -111,10 +112,11 @@ const ResidentialProjects: React.FC<ResidentialProjectsProps> = ({ onEnquire }) 
                         <div key={index} className="bg-white rounded-lg overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.1)] hover:shadow-xl transition-shadow border border-zinc-100 flex flex-col">
                             {/* Image Area */}
                             <div className="relative h-56 overflow-hidden">
-                                <img
+                                <Image
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                    fill
+                                    className="object-cover hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-3 py-1.5 uppercase tracking-wide rounded-sm shadow-sm">
                                     {project.status}

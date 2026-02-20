@@ -8,7 +8,7 @@ interface FloatingContactMenuProps {
 
 const FloatingContactMenu: React.FC<FloatingContactMenuProps> = ({ onEmailClick }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/918448774030");
+    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/919090907712");
 
     useEffect(() => {
         const params = getUTMParameters();
@@ -18,7 +18,7 @@ const FloatingContactMenu: React.FC<FloatingContactMenuProps> = ({ onEmailClick 
             .join(', ');
 
         if (utmString) {
-            setWhatsappUrl(`https://wa.me/918448774030?text=${encodeURIComponent('Hi, I need more info. ' + utmString)}`);
+            setWhatsappUrl(`https://wa.me/919090907712?text=${encodeURIComponent('Hi, I need more info. ' + utmString)}`);
         }
     }, []);
 
@@ -31,7 +31,7 @@ const FloatingContactMenu: React.FC<FloatingContactMenuProps> = ({ onEmailClick 
 
                 {/* Phone */}
                 <a
-                    href="tel:+919220038472"
+                    href="tel:+919090907712"
                     className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
                     title="Call Us"
                 >

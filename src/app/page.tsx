@@ -24,12 +24,22 @@ export default function Home() {
       <div id="home">
         <HeroSection />
       </div>
-      <ProjectHighlights />
-      <PricingSection onEnquire={() => setIsModalOpen(true)} />
-      <FloorPlanAmenities onViewPlan={() => setIsModalOpen(true)} />
-      <ResidentialProjects onEnquire={() => setIsModalOpen(true)} />
+      <div id="project-highlights">
+        <ProjectHighlights onBrochureClick={() => setIsModalOpen(true)} />
+      </div>
+      <div id="pricing">
+        <PricingSection onEnquire={() => setIsModalOpen(true)} />
+      </div>
+      <div id="floor-plan">
+        <FloorPlanAmenities onViewPlan={() => setIsModalOpen(true)} />
+      </div>
+      <div id="projects">
+        <ResidentialProjects onEnquire={() => setIsModalOpen(true)} />
+      </div>
       {/* <CommercialProjects onEnquire={() => setIsModalOpen(true)} /> */}
-      <LocationAdvantages />
+      <div id="location">
+        <LocationAdvantages />
+      </div>
       <FAQSection />
       <Footer onEnquire={() => setIsModalOpen(true)} />
       <StickyScheduleButton onClick={() => setIsModalOpen(true)} />

@@ -8,8 +8,8 @@ interface FloorPlanAmenitiesProps {
 const FloorPlanAmenities: React.FC<FloorPlanAmenitiesProps> = ({ onViewPlan }) => {
 
     const plans = [
-        { title: 'Floor Plan', icon: <Eye className="w-4 h-4" />, blur: true, image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?q=80&w=2574&auto=format&fit=crop' }, // Architectural drawing placeholder
-        { title: 'Master Plan', icon: <Eye className="w-4 h-4" />, blur: true, image: 'https://images.unsplash.com/photo-1524813686514-a5756c97759e?q=80&w=2670&auto=format&fit=crop' }, // Master plan landscape placeholder
+        { title: 'Floor Plan', icon: <Eye className="w-4 h-4" />, blur: true, image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2675&auto=format&fit=crop' }, // Architectural drawing placeholder
+        { title: 'Master Plan', icon: <Eye className="w-4 h-4" />, blur: true, image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2653&auto=format&fit=crop' }, // Master plan landscape placeholder
         { title: 'Payment Plan', icon: <Lock className="w-4 h-4" />, blur: true, image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2671&auto=format&fit=crop' }, // Document placeholder
     ];
 
@@ -42,8 +42,8 @@ const FloorPlanAmenities: React.FC<FloorPlanAmenitiesProps> = ({ onViewPlan }) =
                                 <div className="absolute inset-0 bg-white/30"></div>
 
                                 {/* Overlay Content */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div className="bg-black/70 text-white px-6 py-2 rounded-full font-bold text-sm tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                <div className="absolute inset-0 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="bg-black/80 lg:bg-black/70 text-white px-6 py-2 rounded-full font-bold text-sm tracking-wide transform lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform shadow-md">
                                         View Detail
                                     </div>
                                 </div>
