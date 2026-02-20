@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { Ruler, Home, CreditCard, Building2, LayoutTemplate, Phone, FileText, CheckCircle2 } from 'lucide-react';
+import { getUTMParameters } from '@/lib/utm';
 
 const ProjectHighlights = () => {
+    const handleBrochureDownload = () => {
+        const params = getUTMParameters();
+        const query = new URLSearchParams(params as any).toString();
+        const basePath = '/brochure.pdf';
+        const url = query ? `${basePath}?${query}` : basePath;
+        window.open(url, '_blank');
+    };
+
+    const handleViewNumber = () => {
+        window.location.href = 'tel:+919220038472';
+    };
+
     return (
         <section className="bg-white">
             {/* Top Banner */}
@@ -105,10 +118,10 @@ const ProjectHighlights = () => {
                         </div>
 
                         <div className="flex flex-wrap gap-4">
-                            <button className="flex-1 bg-[#005bb7] hover:bg-[#004a99] text-white py-3 px-6 rounded-md font-bold text-sm uppercase tracking-wide transition-colors shadow-lg shadow-blue-900/10">
+                            <button onClick={handleViewNumber} className="flex-1 bg-[#005bb7] hover:bg-[#004a99] text-white py-3 px-6 rounded-md font-bold text-sm uppercase tracking-wide transition-colors shadow-lg shadow-blue-900/10">
                                 View Number
                             </button>
-                            <button className="flex-1 border border-[#005bb7] text-[#005bb7] hover:bg-blue-50 py-3 px-6 rounded-md font-bold text-sm uppercase tracking-wide transition-colors flex items-center justify-center gap-2">
+                            <button onClick={handleBrochureDownload} className="flex-1 border border-[#005bb7] text-[#005bb7] hover:bg-blue-50 py-3 px-6 rounded-md font-bold text-sm uppercase tracking-wide transition-colors flex items-center justify-center gap-2">
                                 <FileText className="w-4 h-4" /> Brochure
                             </button>
                             <button className="flex-1 border border-zinc-300 text-zinc-600 hover:border-[#005bb7] hover:text-[#005bb7] py-3 px-6 rounded-md font-medium text-sm transition-colors flex items-center justify-center gap-2">

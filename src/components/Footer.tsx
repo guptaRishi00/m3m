@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Phone, MessageCircle } from 'lucide-react';
+import { getUTMParameters } from '@/lib/utm';
 
 interface FooterProps {
     onEnquire?: () => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onEnquire }) => {
+    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/918448774030");
+
+    useEffect(() => {
+        const params = getUTMParameters();
+        const utmString = Object.entries(params)
+            .filter(([_, value]) => value !== '')
+            .map(([key, value]) => `${key}=${value}`)
+            .join(', ');
+
+        if (utmString) {
+            const message = encodeURIComponent(`I'm interested in M3M Forestia. (Source: ${utmString})`);
+            setWhatsappUrl(`https://wa.me/918448774030?text=${message}`);
+        }
+    }, []);
+
     return (
         <footer className="bg-white pt-16 pb-8 border-t border-zinc-100">
             <div className="container mx-auto px-6 max-w-6xl">
@@ -34,7 +50,8 @@ const Footer: React.FC<FooterProps> = ({ onEnquire }) => {
                         <a href="tel:+919220038472" className="text-zinc-900 font-black text-lg mb-2 hover:text-[#005bb7] transition-colors">
                             Call us at +91 92200 38472
                         </a>
-                        <a href="https://wa.me/918448774030" className="text-zinc-900 font-bold text-sm flex items-center gap-2 hover:text-[#25D366] transition-colors">
+                        <a href={whatsappUrl} className="text-zinc-900 font-bold text-sm flex items-center gap-2 hover:text-[#25D366] transition-colors">
+                            <MessageCircle className="w-4 h-4 text-[#25D366]" />
                             WhatsApp us at +91 8448774030 instantly!
                         </a>
                     </div>

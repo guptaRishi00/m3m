@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, Mail, X, MessageSquare } from 'lucide-react';
+import { getUTMParameters } from '@/lib/utm';
 
 interface FloatingContactMenuProps {
     onEmailClick: () => void;
@@ -7,6 +8,19 @@ interface FloatingContactMenuProps {
 
 const FloatingContactMenu: React.FC<FloatingContactMenuProps> = ({ onEmailClick }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [whatsappUrl, setWhatsappUrl] = useState("https://wa.me/918448774030");
+
+    useEffect(() => {
+        const params = getUTMParameters();
+        const utmString = Object.entries(params)
+            .filter(([_, value]) => value !== '')
+            .map(([key, value]) => `${key}=${value}`)
+            .join(', ');
+
+        if (utmString) {
+            setWhatsappUrl(`https://wa.me/918448774030?text=${encodeURIComponent('Hi, I need more info. ' + utmString)}`);
+        }
+    }, []);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -26,7 +40,7 @@ const FloatingContactMenu: React.FC<FloatingContactMenuProps> = ({ onEmailClick 
 
                 {/* WhatsApp */}
                 <a
-                    href="https://wa.me/918448774030"
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
