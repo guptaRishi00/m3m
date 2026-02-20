@@ -28,7 +28,7 @@ export default function Home() {
       <PricingSection onEnquire={() => setIsModalOpen(true)} />
       <FloorPlanAmenities onViewPlan={() => setIsModalOpen(true)} />
       <ResidentialProjects onEnquire={() => setIsModalOpen(true)} />
-      <CommercialProjects onEnquire={() => setIsModalOpen(true)} />
+      {/* <CommercialProjects onEnquire={() => setIsModalOpen(true)} /> */}
       <LocationAdvantages />
       <FAQSection />
       <Footer onEnquire={() => setIsModalOpen(true)} />
