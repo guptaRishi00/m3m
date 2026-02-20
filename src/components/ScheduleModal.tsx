@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, ChevronRight } from 'lucide-react';
+import { getUTMParameters } from '@/lib/utm';
 
 interface ScheduleModalProps {
     isOpen: boolean;
@@ -7,7 +8,39 @@ interface ScheduleModalProps {
 }
 
 const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
+    const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+
     if (!isOpen) return null;
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        const utmParams = getUTMParameters();
+        const payload = {
+            ...formData,
+            ...utmParams,
+            source: 'Schedule Modal'
+        };
+
+        try {
+            await fetch('https://script.google.com/macros/s/AKfycbx0j3Odz0bWDEJyEdcQLrR0FGn-4_T8agN-SgYn6jSmME5e-DyE2ise6Ed734MN6gU2/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload),
+            });
+            setStatus('success');
+            setTimeout(() => {
+                onClose();
+                setStatus('idle');
+                setFormData({ name: '', phone: '', email: '', message: '' });
+            }, 1500);
+        } catch (error) {
+            console.error(error);
+            setStatus('idle');
+        }
+    };
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
@@ -75,13 +108,16 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
 
                     {/* Right Pane - Form */}
                     <div className="w-full md:w-[55%] bg-white p-8">
-                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-5" onSubmit={handleSubmit}>
 
                             {/* Name */}
                             <div>
                                 <input
                                     type="text"
                                     placeholder="Enter your name"
+                                    required
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
                                 />
                             </div>
@@ -91,6 +127,9 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
                                 <input
                                     type="tel"
                                     placeholder="Phone number"
+                                    required
+                                    value={formData.phone}
+                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
                                 />
                             </div>
@@ -100,6 +139,8 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
                                 <input
                                     type="email"
                                     placeholder="Email (Optional)"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm"
                                 />
                             </div>
@@ -109,6 +150,8 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
                                 <textarea
                                     rows={4}
                                     placeholder="Type your message..."
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                     className="w-full px-4 py-3 bg-white border border-zinc-300 rounded-sm focus:outline-none focus:border-[#005bb7] text-zinc-900 placeholder:text-zinc-400 text-sm resize-none"
                                 ></textarea>
                             </div>
@@ -116,9 +159,10 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-full py-3 bg-[#005bb7] hover:bg-[#004a99] text-white font-bold text-lg rounded-sm transition-colors shadow-sm"
+                                disabled={status === 'loading'}
+                                className="w-full py-3 bg-[#005bb7] hover:bg-[#004a99] text-white font-bold text-lg rounded-sm transition-colors shadow-sm disabled:opacity-50"
                             >
-                                Submit
+                                {status === 'loading' ? 'Processing...' : status === 'success' ? 'Thank You!' : 'Submit'}
                             </button>
                         </form>
                     </div>
