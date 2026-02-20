@@ -13,7 +13,10 @@ const Header: React.FC<HeaderProps> = ({ onEnquireClick }) => {
         <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-xl text-white flex flex-col border-b border-white/10 shadow-lg shadow-black/50">
             <div className="px-6 py-5 flex justify-between items-center w-full">
                 {/* Logo Text */}
-                <div className="flex flex-col select-none cursor-pointer lg:ml-15">
+                <div
+                    className="flex flex-col select-none cursor-pointer lg:ml-15"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
                     <h1 className="text-4xl font-black tracking-tighter leading-[0.8]">M3M</h1>
                     <p className="text-[10px] font-medium tracking-[0.2em] opacity-90 mt-1">Our Expertise. Your Joy.</p>
                 </div>
